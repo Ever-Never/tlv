@@ -1,26 +1,25 @@
 package skymobi.tlv.encode;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import skymobi.tlv.util.ByteUtil;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public abstract class AbstractTLVEncoder implements TLVEncoder {
 
 	@Override
-	public List<byte[]> encode(int tag, Object value) {
+	public void encode(int tag, Object value, DataOutputStream out)
+			throws IOException {
 		if (value == null)
-			return null;
-		List<byte[]> ls = new ArrayList<byte[]>();
+			return;
+
 		// tag
-		ls.add(ByteUtil.intToByteArray(tag));
+		out.writeInt(tag);
 		byte[] buf = valueToByteArray(value);
 		int length = buf.length;
 		// length
-		ls.add(ByteUtil.intToByteArray(length));
+		out.writeInt(length);
 		// value
-		ls.add(buf);
-		return ls;
+		out.write(buf);
 	}
 
 	/**
@@ -32,6 +31,18 @@ public abstract class AbstractTLVEncoder implements TLVEncoder {
 	 * @return
 	 * @return byte[]
 	 */
-	protected abstract byte[] valueToByteArray(Object value);
+	protected byte[] valueToByteArray(Object value) throws IOException{
+		ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+		DataOutputStream out=new DataOutputStream(byteArrayOutputStream);
+		writeValue(value, out);
+		return byteArrayOutputStream.toByteArray();
+	}
+	/**
+	 * 输出留中写入值
+	 * @param value
+	 * @param out
+	 * @throws IOException
+	 */
+	protected abstract void writeValue(Object value,DataOutputStream out) throws IOException;
 
 }

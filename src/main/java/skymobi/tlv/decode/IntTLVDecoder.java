@@ -1,12 +1,14 @@
 package skymobi.tlv.decode;
 
-import skymobi.tlv.util.ByteUtil;
+import java.io.DataInputStream;
+import java.io.IOException;
 
-public class IntTLVDecoder implements TLVDecoder {
+
+public class IntTLVDecoder extends AbstractTLVDecoder{
 
 	@Override
-	public Object decode(byte[] data) {
-		return ByteUtil.byteArrayToInt(data, 0);
+	protected Object readValue(DataInputStream dataInputStream) throws IOException {
+		return dataInputStream.readInt();
 	}
 
 }

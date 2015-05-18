@@ -1,13 +1,16 @@
 package skymobi.tlv.encode;
 
-import java.util.List;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
-public class CharTLVEncoder implements TLVEncoder {
+public class CharTLVEncoder extends AbstractTLVEncoder {
 
 	@Override
-	public List<byte[]> encode(int tag, Object value) {
-		// TODO Auto-generated method stub
-		return null;
+	protected void writeValue(Object value, DataOutputStream out)
+			throws IOException {
+		out.writeChar((Character)value);
+		
 	}
+
 
 }

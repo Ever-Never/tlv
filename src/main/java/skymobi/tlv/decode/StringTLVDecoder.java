@@ -1,12 +1,13 @@
 package skymobi.tlv.decode;
 
-import skymobi.tlv.util.ByteUtil;
+import java.io.UnsupportedEncodingException;
+
 
 public class StringTLVDecoder implements TLVDecoder {
 
 	@Override
-	public Object decode(byte[] data) {
-		return ByteUtil.byteArrayToString(data);
+	public Object decode(byte[] data) throws UnsupportedEncodingException {
+		return new String(data, "utf-8");
 	}
 
 }

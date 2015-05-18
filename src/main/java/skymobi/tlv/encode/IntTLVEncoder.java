@@ -1,13 +1,15 @@
 package skymobi.tlv.encode;
 
-import skymobi.tlv.util.ByteUtil;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class IntTLVEncoder extends AbstractTLVEncoder {
 
 	@Override
-	protected byte[] valueToByteArray(Object value) {
-		Integer integer = (Integer) value;
-		return ByteUtil.intToByteArray(integer.intValue());
+	protected void writeValue(Object value, DataOutputStream out)
+			throws IOException {
+		out.writeInt((Integer) value);
+
 	}
 
 }

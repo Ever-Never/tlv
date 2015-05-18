@@ -1,10 +1,16 @@
 package skymobi.tlv.encode;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 
 public class BooleanTLVEncoder extends AbstractTLVEncoder {
 
 	@Override
-	protected byte[] valueToByteArray(Object value) {
-		return new byte[] { (byte) ((Boolean) value ? 1 : 0) };
+	protected void writeValue(Object value, DataOutputStream out)
+			throws IOException {
+		out.writeBoolean((Boolean)value);
 	}
+
+	
 }

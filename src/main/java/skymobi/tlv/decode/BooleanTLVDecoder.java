@@ -1,11 +1,14 @@
 package skymobi.tlv.decode;
 
-public class BooleanTLVDecoder implements TLVDecoder {
+import java.io.DataInputStream;
+import java.io.IOException;
+
+public class BooleanTLVDecoder extends AbstractTLVDecoder {
 
 	@Override
-	public Object decode(byte[] data) {
-		// TODO Auto-generated method stub
-		return null;
+	protected Object readValue(DataInputStream dataInputStream)
+			throws IOException {
+		return dataInputStream.readBoolean();
 	}
 
 }

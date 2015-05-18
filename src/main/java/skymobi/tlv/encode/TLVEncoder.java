@@ -1,6 +1,7 @@
 package skymobi.tlv.encode;
 
-import java.util.List;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 /**
  * TLV编码接口
@@ -9,5 +10,5 @@ import java.util.List;
  * 
  */
 public interface TLVEncoder {
-	public List<byte[]> encode(int tag, Object value);
+	public void encode(int tag, Object value,DataOutputStream out) throws IOException;
 }
