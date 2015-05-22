@@ -19,9 +19,43 @@ public class TLVDecoderRepository {
 
 	private TLVDecoderRepository() {
 		repository = new ConcurrentHashMap<Class<?>, TLVDecoder>();
+		
+		TLVDecoder decoder=null;
+		
+		decoder=new BooleanTLVDecoder();
+		repository.put(boolean.class, decoder);
+		repository.put(Boolean.class, decoder);
+		
+		decoder=new ByteTLVDecoder();
+		repository.put(byte.class, decoder);
+		repository.put(Byte.class, decoder);
+		
+		decoder=new CharTLVDecoder();
+		repository.put(char.class, decoder);
+		repository.put(Character.class, decoder);
+		
+		decoder=new DoubleTLVDecoder();
+		repository.put(double.class, decoder);
+		repository.put(Double.class, decoder);
+		
+		decoder=new FloatTLVDecoder();
+		repository.put(float.class, decoder);
+		repository.put(Float.class, decoder);
+		
+		decoder=new IntTLVDecoder();
+		repository.put(int.class, decoder);
+		repository.put(Integer.class, decoder);
+		
+		decoder=new LongTLVDecoder();
+		repository.put(long.class, decoder);
+		repository.put(Long.class, decoder);
+		
+		decoder=new ShortTLVDecoder();
+		repository.put(short.class, decoder);
+		repository.put(Short.class, decoder);
+		
 		repository.put(String.class, new StringTLVDecoder());
-		repository.put(int.class, new IntTLVDecoder());
-		repository.put(Integer.class, new IntTLVDecoder());
+		
 	}
 
 	public static TLVDecoderRepository getInstance() {

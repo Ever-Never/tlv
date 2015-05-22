@@ -9,5 +9,11 @@ import java.io.IOException;
  */
 public interface TLVDecoder {
 
+	/**
+	 * 解析特定的值
+	 * @param data 
+	 * @return
+	 * @throws IOException
+	 */
 	public Object decode(byte[] data) throws IOException ;
 }
